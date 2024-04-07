@@ -5,6 +5,10 @@ from mitiq.zne.scaling import fold_gates_at_random, fold_global
 from math import sqrt, pi
 from qiskit.quantum_info import Statevector
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.circuit.library import CRZGate
+
+import cirq
+
 
 """
 plik testowy
@@ -19,8 +23,32 @@ wszystko komentujcie
 
 # q = QuantumRegister(5,'q')
 # c = ClassicalRegister(5,'c')
+# alfa=pi/2
+# qc = QuantumCircuit(2)
+# # qc.crz(alfa, 0, 1)
+# CRZGate(alfa, qc[0],qc[1])
+# qc=fold_gates_at_random(qc, scale_factor=3)
+# print(qc)
 
-# qc = QuantumCircuit(q, c)
+
+# def qft_circuit(num_qubits):
+#     qubits = cirq.LineQubit.range(num_qubits)
+#     circuit = cirq.Circuit()
+
+#     for target_qubit in range(num_qubits):
+#         circuit.append(cirq.H(qubits[target_qubit]))
+#         for control_qubit in range(target_qubit + 1, num_qubits):
+#             angle = pi / (2 ** (control_qubit - target_qubit))
+#             circuit.append(cirq.CZ(qubits[control_qubit], qubits[target_qubit])**(angle))
+    
+#     circuit.append([cirq.SWAP(qubits[i], qubits[num_qubits - i - 1]) for i in range(num_qubits // 2)])
+
+#     return circuit
+
+# num_qubits = 5
+# qft_circuit_example = qft_circuit(num_qubits)
+# print("Quantum Fourier Transform Circuit for", num_qubits, "qubits:")
+# print(qft_circuit_example)
 # # print(len(qc), len(q))
 
 # n=len(q)

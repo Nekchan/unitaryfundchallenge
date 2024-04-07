@@ -1,5 +1,6 @@
 from math import pi
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+import cirq
+from cirq import Circuit, LineQubit
 
 """
 szablon pisania funkcji:
@@ -14,17 +15,12 @@ są to techniki czysto informacyjne dla programistów - nie mają wpływ na prac
 można napisać A:int a wprowadzić string ale to jest zmyłka dla innych - nie rób tak.
 """
 
-def QFT(qc:QuantumCircuit, q:QuantumRegister, c:ClassicalRegister)->QuantumCircuit:
-    n=len(q)
+def QFT(q:LineQubit, n:int)->Circuit:
+    qc = Circuit()
     for i in range(n):
-        qc.h(q[i])
-
-        j=1
-        while n>i+j:
-            theta=pi/(2**j)
-            qc.crx(theta, q[i], q[i+j])
-            j+=1
-    for k in range(n//2):
-        qc.swap(q[k], q[n-k-1])
-    qc.measure(q,c)
+        qc.append(cirq.H(q[i]))
+        for j in range(i + 1, n):
+            alfa = pi / (2 ** (j - i))
+            qc.append(cirq.CZ(q[j], q[i])**(alfa))
+    qc.append([cirq.SWAP(q[i], q[n - i - 1]) for i in range(n // 2)])
     return qc
