@@ -1,5 +1,4 @@
 # unitaryfundchallenge
-fthis
 
 
 
