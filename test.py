@@ -29,7 +29,11 @@ wszystko komentujcie
 # CRZGate(alfa, qc[0],qc[1])
 # qc=fold_gates_at_random(qc, scale_factor=3)
 # print(qc)
-
+qubits=cirq.LineQubits.range(1)
+qc=cirq.Circuit()
+qc.append(cirq.H(qubits[0]))
+qc.append(cirq.H(qubits[0]))
+print(qc)
 
 # def qft_circuit(num_qubits):
 #     qubits = cirq.LineQubit.range(num_qubits)
